@@ -1,0 +1,27 @@
+@media print {
+  @page { margin: 0; }
+  body { margin: 2cm; }
+}
+eliminar url, encabezado, fecha al imprimir html
+
+var URLactual = window.location.href;
+        var res = URLactual.split("#");
+
+        function cargar(ruta,container){
+            $.ajax({
+                url: ruta,
+                type:'HEAD',
+                error: function(){
+                    location.href = "404.html";
+                },
+                success: function(){
+                    $("#"+container).load(ruta);
+                }
+            });         
+        }
+
+        if(res[1]=='!'){
+            cargar("home/");
+        }else{
+            cargar(res[1]); 
+        }
